@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div id="loading" style="display:none;">
+    Yükleniyor..
+</div>
+<div id="sonuc">
+
+</div>
+
+
+
+<div>
+    @Ajax.ActionLink("Verileri Yükle", "GetData", null, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "sonuc", InsertionMode = InsertionMode.ReplaceWith, LoadingElementDuration = 250, LoadingElementId = "loading" }, new { @class = "btn btn-success" })
+</div>

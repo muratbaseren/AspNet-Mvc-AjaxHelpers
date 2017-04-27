@@ -1,0 +1,13 @@
+﻿@model Tuple<int, string>
+
+@if (Model.Item1 > -1)
+{
+    <li id="id_@Model.Item1" class="list-group-item">
+        @Ajax.ActionLink("Del", "RemoveUrun", new { id = Model.Item1 }, new AjaxOptions() { HttpMethod = "GET", LoadingElementId = "loading", LoadingElementDuration = 300, UpdateTargetId = "id_" + Model.Item1, InsertionMode = InsertionMode.ReplaceWith }, new { @class = "btn btn-danger" })
+        &nbsp;@Model.Item2
+    </li>
+}
+else
+{
+
+}

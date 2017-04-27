@@ -1,0 +1,35 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Index3";
+}
+
+<style>
+    .form-control {
+        width: 280px;
+    }
+</style>
+
+<h2>Index3</h2>
+
+<div>
+    @using (Ajax.BeginForm("InsertUrun", new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.InsertAfter, LoadingElementId = "loading", LoadingElementDuration = 300, UpdateTargetId = "sonuc" }))
+    {
+        @Html.TextBox("newdata", null, new { placeholder = "ürün adı", @class = "form-control col-md-2" })
+        @:&nbsp;<button class="btn btn-success">Gönder</button>
+    }
+    <hr />
+</div>
+
+<ul class="list-group" id="sonuc">
+    <li id="loading" class="list-group-item list-group-item-warning" style="display:none;">
+        yükleniyor..
+    </li>
+
+    @foreach (string item in Model)
+    {
+        <li id="id_@Model.IndexOf(item)" class="list-group-item">
+            @Ajax.ActionLink("Del", "RemoveUrun", new { id = Model.IndexOf(item) }, new AjaxOptions() { HttpMethod = "GET", LoadingElementId = "loading", LoadingElementDuration = 300, UpdateTargetId = "id_" + Model.IndexOf(item), InsertionMode = InsertionMode.ReplaceWith }, new { @class = "btn btn-danger" })
+            &nbsp;@item
+        </li>
+    }
+</ul>

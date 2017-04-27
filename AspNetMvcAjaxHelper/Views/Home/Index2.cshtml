@@ -1,0 +1,21 @@
+﻿@using AspNetMvcAjaxHelper.Models
+@model Veri
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+@using (Ajax.BeginForm("SetData", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "sonuc", InsertionMode = InsertionMode.Replace, LoadingElementId = "loading", LoadingElementDuration = 300 }))
+{
+    @Html.TextBoxFor(x => x.Data)
+    <button type="submit" class="btn btn-success">Send</button>
+}
+
+<div id="loading" class="alert alert-warning" style="display:none;">
+    Yükleniyor..
+</div> 
+<div id="sonuc">
+
+</div>
